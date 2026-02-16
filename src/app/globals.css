@@ -1,0 +1,115 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-press-start: var(--font-press-start);
+  --font-vt323: var(--font-vt323);
+  --font-silkscreen: var(--font-silkscreen);
+
+  --font-heading: var(--font-press-start);
+  --font-body: var(--font-vt323);
+  --font-cta: var(--font-silkscreen);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-mint: #98ff98;
+  --color-teal: #008080;
+  --color-cyan: #00ffff;
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-none: 0;
+}
+
+:root {
+  --background: oklch(0.98 0.01 200);
+  --foreground: oklch(0.15 0.02 200);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.02 200);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.02 200);
+
+  --primary: oklch(0.6 0.15 200); /* Teal-ish */
+  --primary-foreground: oklch(0.98 0 0);
+
+  --secondary: oklch(0.92 0.1 160); /* Mint-ish */
+  --secondary-foreground: oklch(0.2 0.05 160);
+
+  --muted: oklch(0.9 0.02 200);
+  --muted-foreground: oklch(0.4 0.02 200);
+
+  --accent: oklch(0.85 0.2 200); /* Cyan-ish */
+  --accent-foreground: oklch(0.15 0.02 200);
+
+  --destructive: oklch(0.6 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.2 0.02 200);
+  --input: oklch(0.2 0.02 200);
+  --ring: oklch(0.6 0.15 200);
+
+  --radius: 0px;
+}
+
+.dark {
+  --background: oklch(0.15 0.02 200);
+  --foreground: oklch(0.98 0.01 200);
+  --card: oklch(0.2 0.02 200);
+  --card-foreground: oklch(0.98 0.01 200);
+  /* ... other dark mode colors if needed */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-color: var(--background);
+    background-attachment: fixed;
+    opacity: 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading uppercase tracking-tighter;
+  }
+}
+
+@layer utilities {
+  .pixel-border {
+    border: 4px solid var(--border);
+    box-shadow:
+      4px 0 0 0 var(--border),
+      -4px 0 0 0 var(--border),
+      0 4px 0 0 var(--border),
+      0 -4px 0 0 var(--border);
+  }
+
+  .pixel-button {
+    @apply relative inline-block px-4 py-2 font-cta uppercase transition-all;
+    border: 4px solid black;
+    box-shadow: 2px 2px 0 0 black;
+  }
+
+  .pixel-button:active {
+    box-shadow: 0 0 0 0 black;
+    transform: translate(2px, 2px);
+  }
+}
